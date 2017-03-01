@@ -1,0 +1,9 @@
+<%= form_for(@topic) do |f| %>
+  <%= f.hidden_field :title %>
+  <%= f.hidden_field :content %>
+
+  <%= @topic.title %>
+  <%= @topic.content %>
+  <%= image_tag(@topic.topic_img, class: "comimg center-block")%><br />
+  <%= f.submit %>
+  <% end %>
