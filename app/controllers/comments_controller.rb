@@ -6,10 +6,23 @@ class CommentsController < ApplicationController
       if @comment.save
         format.html{redirect_to topic_path(@topic), notice: "コメントを投稿しました"}
         format.json{render :show, status: :created, location: @comment}
-        format.json{render :index}
+        format.js{render :index}
       else
         format.html{render :new}
         format.json{render json: @comment.errors, status: :unporocessable_entity}
+      end
+    end
+  end
+
+  def destroy
+    @comment = Comment.find(params[:id])
+    respond_to do |format|
+      if @comment.destroy
+        format.html{redirect_to topic_path(@topic), notice: "コメントを削除しました"}
+        format.js{render :index}
+      else
+        format.html{render :new}
+        format.json{render json: @comment.errors, status: unporocessable_entity}
       end
     end
   end
