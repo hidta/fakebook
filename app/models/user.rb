@@ -12,7 +12,6 @@ class User < ActiveRecord::Base
   #snslogin settings
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.find_by(email: auth.info.email)
-    binding.pry
     unless user
       user = User.new(
           name:     auth.extra.raw_info.name,
