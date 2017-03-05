@@ -6,17 +6,20 @@ class User < ActiveRecord::Base
 
   has_many :topics, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :relationships, foreign_key: "follower_id", dependent: :destroy
+  has_many :reverse_relationships, foreign_key: "followed_id", class_name: "Relationship", dependent: :destroy
 
+  #snslogin settings
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.find_by(email: auth.info.email)
-
+    binding.pry
     unless user
       user = User.new(
           name:     auth.extra.raw_info.name,
           provider: auth.provider,
           uid:      auth.uid,
           email:    auth.info.email ||= "#{auth.uid}-#{auth.provider}@example.com",
-          icon_url:   auth.info.image,
+          image_url: auth.info.image,
           password: Devise.friendly_token[0, 20]
       )
       user.skip_confirmation!
@@ -30,7 +33,7 @@ class User < ActiveRecord::Base
     unless user
       user = User.new(
           name:     auth.info.nickname,
-          icon_url: auth.info.image,
+          image_url: auth.info.image,
           provider: auth.provider,
           uid:      auth.uid,
           email:    auth.info.email ||= "#{auth.uid}-#{auth.provider}@example.com",
@@ -42,13 +45,15 @@ class User < ActiveRecord::Base
     user
   end
 
+  #サインアップできるよう
   def self.create_unique_string
     SecureRandom.uuid
   end
 
-  mount_uploader :icon_url, IconUploader
+  #uploader settings, snsのアイコン画像
+  mount_uploader :icon, IconUploader
 
-    #omniauthでサインアップしたアカウントのユーザ情報の変更出来るようにする
+  #omniauthでサインアップしたアカウントのユーザ情報の変更出来るようにする
    def update_with_password(params, *options)
     if provider.blank?
       super
@@ -56,6 +61,22 @@ class User < ActiveRecord::Base
       params.delete :current_password
       update_without_password(params, *options)
     end
+  end
+
+  #follow機能settings
+  #フォローする
+  def follow!(other_user)
+    relationships.create!(followed_id: other_user.id)
+  end
+
+  #フォローしているかどうかを確認する
+  def following?(other_user)
+    relationships.find_by(followed_id: other_user.id)
+  end
+
+  #指定のユーザのフォローを解除する
+  def unfollow!(other_user)
+    relationships.find_by(followed_id: other_user.id).destroy
   end
 
 end

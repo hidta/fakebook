@@ -1,12 +1,12 @@
 module ApplicationHelper
   def profile_img(user)
-    return image_tag(user.icon_url, alt: user.name)if user.icon_url?
+    return image_tag(user.image_url, alt: user.name, class: "thumbnail center-block")if user.image_url?
     unless user.provider.blank?
-      img_url = user.icon_url
+      img_url = user.image_url
     else
       img_url = 'no_image.png'
     end
-    image_tag(img_url, alt: user.name)
+    image_tag(img_url, alt: user.name, class: "thumbnail center-block")
   end
 
 end

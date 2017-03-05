@@ -1,21 +1,33 @@
 Rails.application.routes.draw do
 
-  get 'comments/create'
-
+  #管理画面設定
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
+  #ログイン機能設定
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     omniauth_callbacks: "users/omniauth_callbacks"
   }
+  #その他ルーティング
   root 'topics#index'
+
   resources :topics do
     resources :comments
-    
     collection do
       post :confirm
     end
   end
 
+  resources :users, only:[:index]
+
+  resources :conversations do
+    resources :messages
+  end
+
+  #フォロー機能設定
+  resources :relationships, only:[:create, :destroy]
+
+  #開発メーラー設定
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end

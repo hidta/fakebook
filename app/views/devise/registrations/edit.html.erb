@@ -39,8 +39,8 @@
 
   <div class="field">
     <%= profile_img(@user) if profile_img(@user) %>
-    <%= f.file_field :icon_url %>
-    <%= f.hidden_field :icon_url_cache %>
+    <%= f.file_field :image_url %>
+    <%= f.hidden_field :image_url_cache %>
   </div>
 
   <div class="actions">
@@ -53,3 +53,11 @@
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>
+
+<div id="page-top-btn" class="page-top-btn">
+  <p><a class="move-page-top" id="move-page-top">▲</a></p>
+</div>
+<footer class="navbar-footer nav container-fulid">
+  <p>運営会社 株式会社</p>
+  <p>© 2015-2016 Copyright.</p>
+</footer>

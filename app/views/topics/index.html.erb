@@ -1,25 +1,31 @@
-<p id="notice"><%= notice %></p>
-<% if user_signed_in? %>
-          <li><%= link_to "マイページ", edit_user_registration_path %></li>
-          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-        <% else %>
-          <li><%= link_to "ログイン", new_user_session_path %></li>
-          <li><%= link_to "サインアップ", new_user_registration_path %></li>
+<section class="container">
+  <div class="row">
+    <%= link_to 'New Topic', new_topic_path, class: "col-md-4 offset-4" %>
+  </div>
+  <div class="row">
+    <p id="notice", class="alert"><%= notice %></p>
+    <div class="offset-col-4 col-4 ">
+      <% @topics.each do |topic| %>
+        <%= link_to topic_path(topic.id) do %>
+          <h4><strong><%= topic.title %></strong></h4>
         <% end %>
-<h1>Listing Topics</h1>
-
-<% @topics.each do |t| %>
-  <%= link_to topic_path(t.id) do %>
-    <h4><strong><%= t.title %></strong></h4>
-  <% end %>
-  <p><%= t.user.name %></p>
-        <p><%= link_to 'Show', topic_path(t.id) %>
-        <%= link_to 'Edit', edit_topic_path(t.id) %>
-        <%= link_to 'Destroy', topic_path(t.id), method: :delete, data: { confirm: 'Are you sure?' } %></p>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Topic', new_topic_path %>
+        <%= topic.user.name %>
+        <%= profile_img(topic.user) %>
+        <%= link_to image_tag(topic.topic_img), data:{toggle: "modal", target: "#img-modal"} %>
+          <div class="modal" id="img-modal" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <%= image_tag(topic.topic_img) %>
+              </div>
+            </div>
+          </div>
+        <div class="float-right">
+          <div class="btn-group ">
+            <%= link_to 'Edit', edit_topic_path(topic.id), class: "btn btn-default" %>
+            <%= link_to 'Destroy', topic_path(topic.id), class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

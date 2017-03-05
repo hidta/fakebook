@@ -33,6 +33,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :name
       t.string :uid,      default: "",  null: false
       t.string :provider, default: "",  null: false
+      t.string :icon
       t.string :image_url
       t.boolean :admin,   default: false
 

@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+
   def create
     @comment = current_user.comments.build(comment_params)
     @comments = @comment.topic
@@ -12,6 +13,16 @@ class CommentsController < ApplicationController
         format.json{render json: @comment.errors, status: :unporocessable_entity}
       end
     end
+  end
+
+  def edit
+    @comment = Comment.find(params[:id])
+    respond_to do |format|
+      format.html{redirect_to topic_path(@topic)}
+      format.json{render :show, status: :success, location: @comment}
+      format.js{render :index}
+    end
+    raise
   end
 
   def destroy

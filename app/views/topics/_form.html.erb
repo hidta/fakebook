@@ -10,8 +10,9 @@
     <%= f.text_field :content, placeholder: "コメント", class: "form-control" %>
   </div><br />
   <div class="field form-inline">
-          <%= f.hidden_field :topic_img_cache %>
+          <%= f.label :topic_img %>
           <%= f.file_field :topic_img, class: "center-block fileupbtn" %>
+          <%= f.hidden_field :topic_img_cache %>
         </div><br />
   <div class="actions form-inline">
     <%= f.submit "Posting", class: 'btn btn-primary' %>
