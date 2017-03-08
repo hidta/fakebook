@@ -1,11 +1,25 @@
-<%= form_for(@topic) do |f| %>
-  <%= f.hidden_field :title %>
-  <%= f.hidden_field :content %>
-  <%= f.hidden_field :topic_img_cache %>
+<section class="container">
+  <div class="row">
+    <div class="card">
+      <div class="card-block">
+        <%= form_for(@topic) do |f| %>
+          <%= f.hidden_field :title %>
+          <%= f.hidden_field :content %>
+          <%= f.hidden_field :topic_img_cache %>
 
+          <h3 class="card-title text-center">
+            <%= @topic.title %>
+          </h3>
+          <%= image_tag(@topic.topic_img, class: "comimg center-block")%><br />
+          <div class="card-text text-center">
+            <%= @topic.content %>
+           </div><br>
+          <div class="actions form-inline">
+            <%= f.submit "Posting", class: 'btn btn-primary center-block' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <%= @topic.title %>
-  <%= @topic.content %>
-  <%= image_tag(@topic.topic_img, class: "comimg center-block")%><br />
-  <%= f.submit %>
-<% end %>

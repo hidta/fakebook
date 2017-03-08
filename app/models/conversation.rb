@@ -14,5 +14,4 @@ class Conversation < ActiveRecord::Base
       User.find(sender_id)
     end
   end
-
 end

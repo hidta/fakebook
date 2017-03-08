@@ -24,10 +24,12 @@
 <%= form_for [@conversation, @message], html: {class: "ui reply form"} do |f| %>
   <div class="field">
     <%= f.text_area :body, class: "form-control" %>
-  </div>
+  </div><br>
     <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
   <div>
-    <%= f.submit "メッセージを送る" %>
+    <div class="col-offset-sm-8">
+      <%= f.submit "メッセージを送る", class: "btn btn-default" %>
+    </div>
   </div>
 
 <% end %>

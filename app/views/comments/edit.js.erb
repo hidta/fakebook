@@ -1,0 +1,3 @@
+var comment = $('#comment<%= comment.id %>').text();
+$("#left-content").html("<%= j(render 'comments/edit', { comments: @comment.topic.comments, topic: @comment.topic }) %>")
+$(':text').val('')

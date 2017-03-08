@@ -12,11 +12,12 @@
     <nav class="navbar navbar-default navbar-static-top">
       <div class="container-fluid">
         <div class="navbar-header">
-          <%= link_to "Home", root_path, class: "navbar-brand" %>
+          <%= link_to "Fakebook", root_path, class: "navbar-brand" %>
         </div>
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
             <li><%= link_to 'ユーザー一覧', users_path if user_signed_in? %></li>
+            <li><%= link_to "メッセージ", conversations_path %></li>
             <li><%= link_to "マイページ", edit_user_registration_path %></li>
             <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
         <% else %>
@@ -28,7 +29,21 @@
     </nav>
   </header>
 
-<%= yield %>
+  <div class="container">
+    <div class="row">
+      <% flash.each do |name, msg| %>
+        <div class="alert alert-<%= name == "notice" ? "success" : "error" %>">
+          <a class="close" data-dismiss="alert">×</a>
+           <h4 class="text-center"><%= msg %></h4>
+        </div>
+      <% end %>
+      <div class="col-8">
+
+        <%= yield %>
+
+      </div>
+    </div>
+  </div>
 
 </body>
 </html>
