@@ -1,6 +1,8 @@
 // Place all the styles related to the topics controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+//index
 .navbar {
   background-color: #3b5998;
 }
@@ -9,10 +11,29 @@
   color : white;
 }
 
-.navbar-right li a {
-  color: white;
+.navbar-nav {
+  li {
+    a {
+    color: #fff;
+    }
+  }
 }
 
 .iconimg {
   height: 150px
+}
+
+.pics {
+  padding: 0, 30, 0, 30;
+}
+
+.timg {
+  width: 200px;
+  position: center;
+
+}
+
+//new
+.card-block {
+  border: solid, 1px;
 }
