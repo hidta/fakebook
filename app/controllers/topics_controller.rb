@@ -11,8 +11,13 @@ class TopicsController < ApplicationController
   # GET /topics/1
   # GET /topics/1.json
   def show
+    if params[:name]
+      @comment = @topic.comments
+      @comments = @topic.comments
+    else
       @comment = @topic.comments.build
       @comments = @topic.comments
+    end
   end
 
   # GET /topics/new
