@@ -14,6 +14,7 @@ class TopicsController < ApplicationController
     if params[:name]
       @comment = @topic.comments
       @comments = @topic.comments
+      binding.pry
     else
       @comment = @topic.comments.build
       @comments = @topic.comments
