@@ -1,3 +1,2 @@
-var comment = $('#comment<%= comment.id %>').text();
-$("#left-content").html("<%= j(render 'comments/edit', { comments: @comment.topic.comments, topic: @comment.topic }) %>")
-$(':text').val('')
+$("#comment-modal").html("<%= j(render 'comments/modal', { comment: @comment, topic: @topic }) %>")
+$("#comment-modal").modal('show')

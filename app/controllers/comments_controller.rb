@@ -17,9 +17,8 @@ class CommentsController < ApplicationController
 
   def edit
     @comment = Comment.find(params[:id])
-    @comments = @comment.topic
     respond_to do |format|
-      format.html{redirect_to topic_path(@comment.topic), name: 'edit'}
+      format.html{redirect_to topic_path(@comment.topic) }
       format.json{render :show, status: :success, location: @comment}
       format.js{render :edit}
     end
@@ -29,7 +28,7 @@ class CommentsController < ApplicationController
     @comment = Commnet.find(params[:id])
     respond_to do |format|
       if @comment.save
-        format.html{redirect_to topic_path(@topic), notice: "コメントを投稿しました"}
+        format.html{redirect_to topic_path(@topic), notice: "コメントを編集しました"}
         format.json{render :show, status: :created, location: @comment}
         format.js{render :index}
       else
