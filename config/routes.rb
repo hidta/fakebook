@@ -13,9 +13,6 @@ Rails.application.routes.draw do
 
   resources :topics do
     resources :comments
-    collection do
-      post :confirm
-    end
   end
 
   resources :users, only:[:index]

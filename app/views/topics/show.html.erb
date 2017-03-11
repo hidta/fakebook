@@ -4,9 +4,10 @@
     <div class="topic-text">
       <p class="left"><strong>タイトル</strong></p>
       <p class="left"><%= @topic.title %></p>
-      <p class="left"><strong>内容</strong></p>
+      <p class="left"><%= image_tag(@topic.topic_img, class: "show-img") %></p>
+      <p class="left"><strong>内容</strong>
       <p class="left"><%= @topic.content %></p>
-      <p class="right">
+      <p class="float-right">
         <strong>作成時間:</strong>
         <%= @topic.created_at.strftime("%y/%m/%d %p %l:%M") %>
       </p>

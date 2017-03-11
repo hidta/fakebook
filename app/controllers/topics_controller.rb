@@ -1,4 +1,5 @@
 class TopicsController < ApplicationController
+
   prepend_before_action :authenticate_user!
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
 
@@ -14,7 +15,6 @@ class TopicsController < ApplicationController
     if params[:name]
       @comment = @topic.comments
       @comments = @topic.comments
-      binding.pry
     else
       @comment = @topic.comments.build
       @comments = @topic.comments
@@ -37,7 +37,7 @@ class TopicsController < ApplicationController
     @topic.user_id = current_user.id
     respond_to do |format|
       if @topic.save
-        format.html { redirect_to @topic, notice: 'Topic was successfully created.' }
+        format.html { redirect_to 'index', notice: '新規作成しました' }
         format.json { render :show, status: :created, location: @topic }
       else
         format.html { render :new }
@@ -46,23 +46,11 @@ class TopicsController < ApplicationController
     end
   end
 
-  def confirm
-    @topic = Topic.new(topic_params)
-    render 'new' if @topic.invalid?
-  end
-
   # PATCH/PUT /topics/1
   # PATCH/PUT /topics/1.json
   def update
-    respond_to do |format|
-      if @topic.update(topic_params)
-        format.html { redirect_to @topic, notice: 'Topic was successfully updated.' }
-        format.json { render :show, status: :ok, location: @topic }
-      else
-        format.html { render :edit }
-        format.json { render json: @topic.errors, status: :unprocessable_entity }
-      end
-    end
+   @topic = Topic.update(topic_params) 
+   @topics = Topic.all
   end
 
   # DELETE /topics/1
@@ -70,7 +58,7 @@ class TopicsController < ApplicationController
   def destroy
     @topic.destroy
     respond_to do |format|
-      format.html { redirect_to topics_url, notice: 'Topic was successfully destroyed.' }
+      format.html { redirect_to topics_url, notice: '投稿を削除しました' }
       format.json { head :no_content }
     end
   end

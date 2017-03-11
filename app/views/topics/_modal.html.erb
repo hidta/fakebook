@@ -1,0 +1,33 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <%= form_for(@topic, url: chose_new, remote: true, authenticity_token: true ) do |f| %>
+    <div class="modal-header">
+      <%= f.error_messages! %>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+      </button>
+      <h4 class="modal-title">New/Editing Topic</h4>
+    </div>
+    <div class="modal-body">
+      <div class="field form-inline">
+        <%= f.label :title, class: "sr-only" %>
+        <%= f.text_field :title, placeholder: "タイトル", class: "form-control" %>
+      </div><br />
+      <div class="field form-inline">
+        <%= f.label :content, class: "sr-only" %>
+        <%= f.text_field :content, placeholder: "コメント", class: "form-control" %>
+      </div><br />
+      <div class="field form-inline">
+        <%= f.label :topic_img %>
+        <%= f.file_field :topic_img, class: "center-block fileupbtn" %>
+        <%= f.hidden_field :topic_img_cache %>
+      </div><br />
+    </div>
+    <div class="modal-footer">
+     <div class="actions form-inline">
+      <%= f.submit "Posting", class: 'btn btn-primary' %>
+     </div>
+    </div>
+    <% end %>
+  </div>
+</div>

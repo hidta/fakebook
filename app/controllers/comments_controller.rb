@@ -19,15 +19,15 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     respond_to do |format|
       format.html{redirect_to topic_path(@comment.topic) }
-      format.json{render :show, status: :success, location: @comment}
+      format.json{render :show, status: :success, location: @commment}
       format.js{render :edit}
     end
   end
 
   def update
-    @comment = Commnet.find(params[:id])
+    @comment = Comment.find(params[:id])
     respond_to do |format|
-      if @comment.save
+      if @comment.update(comment_params)
         format.html{redirect_to topic_path(@topic), notice: "コメントを編集しました"}
         format.json{render :show, status: :created, location: @comment}
         format.js{render :index}
@@ -49,7 +49,7 @@ class CommentsController < ApplicationController
         format.json{render json: @comment.errors, status: unporocessable_entity}
       end
      end
-    end
+   end
 
 
   private

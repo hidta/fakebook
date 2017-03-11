@@ -1,31 +1,14 @@
 <section class="container">
   <div class="row text-center">
-    <%= link_to 'New Topic', new_topic_path, class: "btn btn-default btn-lg btn-block" %><br>
+    <%= link_to 'New Topic', new_topic_path, class: "btn btn-default btn-lg btn-block", remote: true %><br>
+    <div id="topic-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"><br>
   </div><br>
   <div class="row">
-    <div class="col-offset-4 col-md-4">
+    <div class="col-offset-md-4 col-md-4">
       <div class="card">
-        <% @topics.each do |topic| %>
-          <div class="card-block">
-            <h4 class="card-title">
-              <%= link_to topic_path(topic) do %>
-                <%= topic.title %>
-              <% end %>
-            </h4>
-            <%= topic.user.name %>
-            <%= profile_img(topic.user) %>
-            <div class="pics">
-              <%= image_tag(topic.topic_img, class: "timg") %>
-            </div>
-            <p class="card-text"><%= topic.content %></p>
-            <div class="float-right">
-              <div class="btn-group ">
-                <%= link_to 'Edit', edit_topic_path(topic.id), class: "btn btn-default" %>
-                <%= link_to 'Destroy', topic_path(topic.id), class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %></p>
-              </div>
-            </div>
-          </div>
-        <% end %>
+
+        <%= render "index" %>        
+      
       </div>
     </div>
     

@@ -1,2 +1,2 @@
-$("#comment-modal").html("<%= j(render 'comments/modal', { comment: @comment, topic: @topic }) %>")
+$("#comment-modal").html("<%= j(render 'comments/modal', { comment: @comment, topic: @comment.topic }) %>")
 $("#comment-modal").modal('show')

@@ -1,7 +1,9 @@
 module TopicsHelper
   def chose_new
     if action_name == 'new'
-      confirm_topics_path
+      topics_path
+    else
+      edit_topic_path
     end
   end
 
