@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Fakebook</title>
+  <%= favicon_link_tag('favicon.ico') %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -12,10 +13,15 @@
     <nav class="navbar navbar-default navbar-static-top">
       <div class="container-fluid">
         <div class="navbar-header">
-          <%= link_to "Fakebook", root_path, class: "navbar-brand" %>
+          <%= link_to image_tag("favicon.ico", id: "home-img"), root_path, class: "navbar-brand" %>
         </div>
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
+           <li><%= link_to edit_user_registration_path, id: "mypage" do %>
+             <%= profile_img(current_user)  %>
+                <span id="stmy">マイページ</span>
+              <% end %>
+            </li>
             <li><%= link_to 'ユーザー一覧', users_path if user_signed_in? %></li>
             <li><%= link_to "メッセージ", conversations_path %></li>
             <li><%= link_to "マイページ", edit_user_registration_path %></li>
@@ -25,23 +31,27 @@
           <li><%= link_to "サインアップ", new_user_registration_path %></li>
         <% end %>
         </ul>
-      </div>
+      </>
     </nav>
   </header>
 
   <div class="container">
     <div class="row">
-      <% flash.each do |name, msg| %>
-        <div class="alert alert-<%= name == "notice" ? "success" : "error" %>">
-          <a class="close" data-dismiss="alert">×</a>
-           <h4 class="text-center"><%= msg %></h4>
-        </div>
-      <% end %>
-      <div class="col-8">
+      <div class="col-lg-8">
 
         <%= yield %>
 
       </div>
+       <div class="col-lg-4">
+        <div class="well sidebar-nav">
+          <ul class="nav nav-list">
+            <li class="nav-header">フォローしてる人一覧</li>
+            <li><%= link_to "Users", "/users"  %></li>
+            <li><%= link_to "Link2", "/path2"  %></li>
+            <li><%= link_to "Link3", "/path3"  %></li>
+          </ul>
+         </div>
+       </div>
     </div>
   </div>
 

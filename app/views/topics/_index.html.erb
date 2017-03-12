@@ -7,15 +7,18 @@
     </h4>
     <%= topic.user.name %>
     <%= profile_img(topic.user) %>
+    <p class="card-text"><%= topic.content %></p>
     <div class="pics">
       <%= image_tag(topic.topic_img, class: "timg") %>
     </div>
-    <p class="card-text"><%= topic.content %></p>
-    <div class="float-right">
-      <div class="btn-group ">
+    <div class="float-left">
+      <div class="btn btn-default">
+        <%= link_to 'コメントする', topic_path(topic), class: "btn btn-default" %>
         <%= link_to 'Edit', edit_topic_path(topic.id), class: "btn btn-default" %>
-        <%= link_to 'Destroy', topic_path(topic.id), class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %></p>
       </div>
+    </div><br>
+    <div class="float-right">
+     <%= link_to 'Destroy', topic_path(topic.id), class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
     </div>
-  </div>
+  </div><br>
 <% end %>
