@@ -2,7 +2,7 @@
 lock '3.6.0'
 
 set :application, 'fakebook'
-set :repo_url, 'git@github.com:hidta/fakebook.git'
+set :repo_url, 'https://github.com/hidta/fakebook'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
