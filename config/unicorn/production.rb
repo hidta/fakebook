@@ -4,9 +4,9 @@ $timeout = 30
 #アプリ名　currentがつく
 $app_dir = "/var/www/fakebook/current"
 #リクエストを受け取るポートを指定
-$listen = File.expand_path 'tmp/sokets/unicorn.socke', $app_dir
+$listen  = File.expand_path 'tmp/sockets/unicorn.sock', $app_dir
 #PIDの管理
-$pid = File.expand_path 'log/unicorn.pid', $app_dir
+$pid     = File.expand_path 'tmp/pids/unicorn.pid', $app_dir
 #エラーログを吐き出すファイルのディレクトリ
 $std_log = File.expand_path 'log/unicorn.log', $app_dir
 
