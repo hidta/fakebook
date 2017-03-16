@@ -49,6 +49,10 @@ gem 'rmagick'
 gem 'pusher'
 gem 'fog'
 gem 'dotenv-rails'
+<<<<<<< HEAD
+=======
+gem 'fog'
+>>>>>>> develop
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

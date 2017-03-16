@@ -3,22 +3,6 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 //index
-.navbar {
-  background-color: #3b5998;
-}
-
-.navbar-brand {
-  color : white;
-}
-
-.navbar-nav {
-  li {
-    a {
-    color: #fff;
-    }
-  }
-}
-
 .iconimg {
   height: 150px
 }
@@ -28,14 +12,44 @@
 }
 
 .timg {
-  width: 200px;
+  width: 250px;
   position: center;
-
+  border: solid 1px #E5E6E6;
 }
 
+.card {
+  border:2px, solid, #fbfbfb;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.card-block {
+  background-color: white;
+  border-radius: 5px;
+  border:2px, solid, black;
+}
+
+.card-title {
+  margin: 10px;
+  padding: 10px;
+}
+
+.comment {
+  float: left;
+  margin-left: 100px;
+}
+
+.edit {
+margin-left: 200px;
+}
+
+.delete {
+  float: right;
+}
 //new
 .card-block {
-  border: solid, 1px;
+  border:2px, solid, black;
+  border-radius: 5px;
 }
 
 //show
