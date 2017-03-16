@@ -1,44 +1,53 @@
-<div class="col-offset-sm-6">
-  <h2 class="col-sm-11 text-center">Log in</h2>
-</div>
-<div class="col-sm-6 float-left">
-  <h3>Fakebookを使うと、友達や同僚、同級生、仲間たちとつながりを深められません。ケータイ、スマートフォンからもアクセスできます。</h3>
-  <%= image_tag("pyNVUg5EM0j.png") %>
-</div>  
+<section class="container">
+  <div class="row">
 
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_messages! %>
-
- <div class="field col-sm-6 clearfix">
-    <%= f.label :email, class: "sr-only" %>
-    <div class="col-sm-10">
-      <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "メールアドレス" %>
+    <div class="col-sm-6">
+      <h3>Fakebookを使うと、友達や同僚、同級生、仲間たちとつながりを深められません。ケータイ、スマートフォンからもアクセスできます。</h3>
+      <%= image_tag("pyNVUg5EM0j.png") %>
     </div>
-  </div><br>
 
-  <div class="field col-sm-6 clearfix">
-    <%= f.label :password, class: "sr-only" %><br />
-    <div class="col-sm-10">
-      <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "パスワード" %>
+    <div class="col-sm-6">
+      <h2 id="title">Login</h2>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
+      
+      <div class="field col-sm-8">
+        <%= f.label :email, class: "sr-only" %>
+        <div class="col-sm-10">
+          <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "メールアドレス" %>
+        </div>
+      </div><br>
+      
+      <div class="field col-sm-8">
+        <%= f.label :password, class: "sr-only" %>
+        <div class="col-sm-10">
+          <%= f.password_field :password, autofocus: true, class: "form-control", placeholder: "パスワード" %>
+        </div>
+      </div><br>
+
+      <div class="field col-sm-8">
+        <% if devise_mapping.rememberable? -%>
+        <div class="col-sm-10">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+        <% end -%>
+      </div>
+
+      <div class="actions col-sm-8 ">
+         <div class="col-offset-sm-5">
+            <%= f.submit "ログイン", class: "btn btn-primary" %>
+          </div>
+      </div>
+    
+
+      <div class="links col-sm-6">
+        <%= render "devise/shared/links" %>
+      </div><br>
+      <%end %>
+      
     </div>
   </div>
+</section>
 
-  <div class="field col-sm-6 clearfix">
-    <% if devise_mapping.rememberable? -%>
-    <div class="col-sm-10">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-    <% end -%>
-  </div>
 
-  <div class="actions col-sm-6 clearfix">
-    <div class="col-offset-sm-5">
-      <%= f.submit "ログイン", class: "btn btn-primary" %>
-    </div>
-  </div>
-<% end %><br>
-<div class="links col-sm-6">
-  <%= render "devise/shared/links" %>
-</div><br>

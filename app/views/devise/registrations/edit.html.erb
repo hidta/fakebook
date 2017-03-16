@@ -1,63 +1,83 @@
-<h2><%= current_user.name %>のページ</h2><br>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, class: "control-group") do |f| %>
-  <%= f.error_messages! %>
-
-  <div class="field col-sm-3 well nav-sidebar float-left" >
-    <%= profile_img(@user) if profile_img(@user) %>
-    <%= f.hidden_field :icon_cache %>
-    <%= f.file_field :icon %>
-  </div>
-
-  <div class="field control-group">
-    <%= f.label :name, class: "col-sm-2 form-control-label text-center" %>
-    <div class="col-sm-6">
-      <%= f.text_field :name, placeholder: "名前", class: "form-control" %>
-    </div>
-  </div><br>
-  <div class="field control-group">
-    <%= f.label :email, class: "col-sm-2 form-control-label text-center" %>
-    <div class="col-sm-6" >
-      <%= f.email_field :email, autofocus: true, class: "form-control" %>
-    </div>
-  </div><br>
-
-  <% if @user.provider.blank? %>
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+<section class="container">
+  <div class="row">
+    <% if current_user.name == nil %>
+      <h2>名無しのページ</h2>
+    <% else %>
+      <h2><%= current_user.name %>のページ</h2><br>
     <% end %>
-
-    <div class="field control-group">
-      <%= f.label :新しいパスワード, class: "col-sm-2 form-control-label text-center" %> <br />
-      <div class="col-sm-6">
-        <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
-        <% if @minimum_password_length %>
-        
-        <em><%= @minimum_password_length %>文字以上のパスワードを設定してください</em>
-        <% end %>
-      </div>
-    </div>
-
-    <div class="field control-group">
-      <%= f.label :password_confirmation, class: "col-sm-2 form-control-label text-center" %><br />
-      <div class="col-sm-6">
-        <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
-      </div>
-    </div>
-
-    <div class="field control-group clearfix col-offset-sm-3">
-      <%= f.label :current_password, class: "col-sm-2 form-control-label text-center" %><br />
-      <div class="col-sm-6">
-        <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
-      </div>
-    </div>
-  <% end %><br>
-
-  <div class="actions clearfix float-right clearfix" id="update">
-    <%= link_to "Back", :back , id: "back-index"%>
-    <%= f.submit "更新", class: "btn btn-primary submitupdate" %>
   </div><br>
-<% end %>
 
-<h3>Cancel my account</h3>
-<%= button_to "アカウントの削除", registration_path(resource_name), class: "btn btn-danger", data: { confirm: "Are you sure?" }, method: :delete %>
+  <div class="row">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, class: "control-group") do |f| %>
+    <%= f.error_messages! %>
+    <div class="col-sm-4 col-offset-sm-2" >
+      <P id="icon"><%= profile_img(@user) if profile_img(@user) %></P>
+      <%= f.hidden_field :icon_cache %>
+      <%= f.file_field :icon %>
+    </div>
+
+    <div class="col-sm-8">
+      <div class="field control-group clearfix">
+        <%= f.label :name, class: "col-sm-3 form-control-label text-center clearfix" %>
+          <div class="col-sm-7">
+            <%= f.text_field :name, placeholder: "名前", class: "form-control" %>
+          </div>
+      </div>
+      <br>
+
+      <div class="field control-group clearfix">
+        <%= f.label :email, class: "col-sm-3 form-control-label text-center" %>
+        <div class="col-md-7" >
+          <%= f.email_field :email, autofocus: true, class: "form-control" %>
+        </div>
+      </div><br>
+
+      <% if @user.provider.blank? %>
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %>
+
+        <div class="field control-group clearfix">
+          <%= f.label :新しいパスワード, class: "col-sm-3 form-control-label text-center" %> <br />
+          <div class="col-sm-7">
+            <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+            <% if @minimum_password_length %>
+              <p><%= @minimum_password_length %>文字以上のパスワードを設定してください</p>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="field control-group clearfix">
+          <%= f.label :password_confirmation, class: "col-sm-3 form-control-label text-center" %><br />
+          <div class="col-sm-7">
+            <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="field control-group clearfix ">
+          <%= f.label :current_password, class: "col-sm-3 form-control-label text-center" %><br />
+          <div class="col-sm-7">
+            <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
+          </div>
+        </div>
+      <% end %><br>
+
+      <div class="actions col-sm-7" id="update">
+        <div class="col-sm-7">
+          <%= link_to "Back", :back , id: "back-index"%>
+          <%= f.submit "更新", class: "btn btn-primary submitupdate" %>
+        </div>
+      </div>
+    <% end %>
+    <br>
+
+    <div class="cancel">
+      <div class="right">
+        <h3>Cancel my account</h3>
+        <%= button_to "アカウントの削除", registration_path(resource_name), class: "btn btn-danger", data: { confirm: "Are you sure?" }, method: :delete %>
+      </div>
+    </div>
+
+    </div>
+  </div>
+</section>

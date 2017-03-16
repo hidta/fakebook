@@ -6,7 +6,8 @@ class TopicsController < ApplicationController
   # GET /topics
   # GET /topics.json
   def index
-    @topics = Topic.all
+    @topics = Topic.all.order(updated_at: :desc)
+    @users = User.all
   end
 
   # GET /topics/1
@@ -39,6 +40,7 @@ class TopicsController < ApplicationController
       if @topic.save
         format.html { redirect_to 'index', notice: '新規作成しました' }
         format.json { render :show, status: :created, location: @topic }
+        format.js   {render :index }
       else
         format.html { render :new }
         format.json { render json: @topic.errors, status: :unprocessable_entity }
@@ -49,8 +51,9 @@ class TopicsController < ApplicationController
   # PATCH/PUT /topics/1
   # PATCH/PUT /topics/1.json
   def update
-   @topic = Topic.update(topic_params) 
+   @topic.update(topic_params) 
    @topics = Topic.all
+   render :index
   end
 
   # DELETE /topics/1

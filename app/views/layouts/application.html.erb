@@ -10,7 +10,7 @@
 
 <body>
   <header>
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
           <%= link_to image_tag("favicon.ico", id: "home-img"), root_path, class: "navbar-brand" %>
@@ -35,25 +35,8 @@
     </nav>
   </header>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8">
+  <%= yield %>
 
-        <%= yield %>
-
-      </div>
-      <div class="col-lg-4">
-        <div class="well sidebar-nav navbar-fixed-side ">
-          <ul class="nav nav-list">
-            <li class="nav-header text-center">フォローしてる人一覧</li>
-            <li><%= link_to "Users", "/users"  %></li>
-            <li><%= link_to "Link2", "/path2"  %></li>
-            <li><%= link_to "Link3", "/path3"  %></li>
-          </ul>
-         </div>
-       </div>
-    </div>
-  </div>
-
+ 
 </body>
 </html>

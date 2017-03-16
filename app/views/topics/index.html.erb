@@ -3,8 +3,7 @@
     <div id="topic-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"><br>
   </div><br>
   <div class="row">
-  <div class="row">
-    <div class="col-md-6 col-lg-offset-2">
+    <div class="col-lg-6 col-lg-offset-2">
       <%= link_to 'New Topic', new_topic_path, class: "btn btn-default btn-lg btn-block", remote: true %><br>
       </div>
     </div>
@@ -15,6 +14,25 @@
       
       </div>
     </div>
-    
+
+    <div class="col-lg-4">
+      <div class="well sidebar-nav navbar-fixed-side ">
+        <ul class="nav nav-list">
+          <li class="nav-header text-center">フォローしてる人一覧</li><br>
+          <% @users.each do |user| %>
+            <% if current_user.following?(user) %>
+              <span class="folloewers">
+                <%= profile_img(user) %>
+                <% if user.name == nil %>
+                  <p>名前未定</p>
+                <% end %>
+                <p><%= user.name %></P>
+              </span>
+            <% end %>
+          <% end %>
+        </ul>
+      </span>
+    </div>
+
   </div>
 </section>

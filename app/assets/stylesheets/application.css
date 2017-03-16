@@ -35,7 +35,8 @@
 }
 
 .pimg {
-  display: inline
+  display: inline;
+  margin: 0;
 }
 
  #home-img {
@@ -55,16 +56,12 @@
   background-color: #3b5998;
 }
 
-.navbar-brand {
-  color : white;
+.navbar-nav > ul > a:hover {
+ color: white;
 }
 
-.navbar-nav {
-  li {
-    a {
-    color: #fff;
-    }
-  }
+a {
+  color: white;
 }
 
 /*body*/
