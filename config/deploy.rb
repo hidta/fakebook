@@ -27,7 +27,7 @@ set :deploy_to, '/var/www/fakebook'
 set :linked_files, %w{.env config/secrets.yml}
 
 # Default value for linked_dirs is []
-set :linked_dirs, %w{log, tmp/pids tmp/cache tmp/sockets public/uploads}
+set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets public/uploads}
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
