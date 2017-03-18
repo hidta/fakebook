@@ -33,19 +33,16 @@ class TopicsController < ApplicationController
 
   # POST /topics
   # POST /topics.json
+
   def create
     @topic = Topic.new(topic_params)
     @topic.user_id = current_user.id
-      @topics = Topic.all
     respond_to do |format|
-     if @topic.save
-        
-         format.html { redirect_to topics_path, notice: '新規作成しました' }
-        # format.json { render :show, status: :created, location: @topic }
-        format.js   { render :index }
+      if @topic.save
+        @topics = Topic.all.order(updated_at: :desc)
+        format.html { redirect_to root_path, notice: '新規作成しました' }
       else
         format.html { render :new }
-        format.json { render json: @topic.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -54,7 +51,7 @@ class TopicsController < ApplicationController
   # PATCH/PUT /topics/1.json
   def update
    @topic.update(topic_params) 
-   @topics = Topic.all
+   @topics = Topic.all.order(updated_at: :desc)
    redirect_to topics_path
   end
 
