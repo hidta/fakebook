@@ -36,11 +36,13 @@ class TopicsController < ApplicationController
   def create
     @topic = Topic.new(topic_params)
     @topic.user_id = current_user.id
+      @topics = Topic.all
     respond_to do |format|
-      if @topic.save
-        format.html { redirect_to 'index', notice: '新規作成しました' }
-        format.json { render :show, status: :created, location: @topic }
-        format.js   {render :index }
+     if @topic.save
+        
+         format.html { redirect_to topics_path, notice: '新規作成しました' }
+        # format.json { render :show, status: :created, location: @topic }
+        format.js   { render :index }
       else
         format.html { render :new }
         format.json { render json: @topic.errors, status: :unprocessable_entity }
@@ -53,7 +55,7 @@ class TopicsController < ApplicationController
   def update
    @topic.update(topic_params) 
    @topics = Topic.all
-   render :index
+   redirect_to topics_path
   end
 
   # DELETE /topics/1

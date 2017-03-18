@@ -15,8 +15,8 @@ CarrierWave.configure do |config|
       config.fog_directory = 'fakebook-production'
       config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/fakebook-production'
     when 'development'
-      config.fog_directory = ''
-      config.asset_host = ''
+      config.fog_directory = 'fakebookaaa'
+      config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/fakebookaaa'
   end
 
 end
