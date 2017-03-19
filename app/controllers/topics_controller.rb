@@ -42,7 +42,7 @@ class TopicsController < ApplicationController
         @topics = Topic.all.order(updated_at: :desc)
         format.html { redirect_to root_path, notice: '新規作成しました' }
       else
-        format.html { render :new }
+        format.html { redirect_to topics_path, notice: '投稿できませんでした' }
       end
     end
   end
