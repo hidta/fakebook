@@ -7,7 +7,8 @@
       <% @conversations.each do |conversation| %>
         <td>
           <% if conversation.target_user(current_user).present? %>
-            <%= link_to conversation.target_user(current_user).name, conversation_messages_path(conversation)%>
+            <strong><%= link_to conversation.target_user(current_user).name, conversation_messages_path(conversation), class: "btn btn-primary"%></strong>
+            <span id="time"><%= conversation.updated_at%></span>
           <% end %>          
         </td>
       <% end %>

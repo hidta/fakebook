@@ -7,7 +7,7 @@ class TopicsController < ApplicationController
   # GET /topics.json
   def index
     @topics = Topic.all.order(updated_at: :desc)
-    @users = User.all
+    @users = User.all.order(updated_at: :desc)
   end
 
   # GET /topics/1
@@ -40,9 +40,9 @@ class TopicsController < ApplicationController
     respond_to do |format|
       if @topic.save
         @topics = Topic.all.order(updated_at: :desc)
-        format.html { redirect_to root_path, notice: '新規作成しました' }
+        format.html { redirect_to root_path, notie: '新規作成しました' }
       else
-        format.html { redirect_to topics_path, notice: '投稿できませんでした' }
+        format.html { redirect_to topics_path, alert: '投稿できませんでした' }
       end
     end
   end

@@ -1,35 +1,41 @@
-<% if @over_ten %>
-  <%= link_to '以前のメッセージ', '?m=all' %>
-<% end %>
-
-<div class="ui segment">
-  <% @messages.each do |message| %>
-    <% if message.body %>
-      <% user = User.find(message.user_id) %>
-      <div class="item">
+<div class="container">
+  <div class="row"> 
+    <% if @over_ten %>
+      <%= link_to '以前のメッセージ', '?m=all', class: "btn btn-default" %>
+    <% end %>
+    <div class="ui segment col-sm-6 col-sm-offset-3">
+      <% @messages.each do |message| %>
+        <% if message.body %>
+          <% user = User.find(message.user_id) %>
+          <div class="item">
         <div class="content">
-          <div class="header"><strong><%= user.name %></strong> <%= message.message_time %></div>
+          <div class="header"><strong><%= user.name %></strong>  <%= message.message_time %></div>
           <div class="list">
             <div class="item">
               <i class="right triangle icon"></i>
               <%= message.body %>
-            </div>
+            </div><br>
           </div>
         </div>
       </div>
-    <% end %>
-  <% end %>
-</div>
 
-<%= form_for [@conversation, @message], html: {class: "ui reply form"} do |f| %>
-  <div class="field">
-    <%= f.text_area :body, class: "form-control" %>
-  </div><br>
-    <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
-  <div>
-    <div class="col-offset-sm-8">
-      <%= f.submit "メッセージを送る", class: "btn btn-default" %>
+
+        <% end %>
+      <% end %>
     </div>
   </div>
+</div>
 
-<% end %>
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-4">
+    <%= form_for [@conversation, @message], html: {class: "ui reply form"} do |f| %>
+      <div class="field form-inline">
+        <%= f.text_area :body, class: "form-control" %>
+        <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
+      </div><br>
+      <div class="col-offset-sm-8">
+        <%= f.submit "メッセージを送る", class: "btn btn-default" %>
+      </div> 
+    <% end %>
+  </div>
+</div>
