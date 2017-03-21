@@ -1,12 +1,16 @@
 <div class="modal-dialog">
   <div class="modal-content">
-    <%= form_for(@topic, authenticity_token: true ) do |f| %>
+    <%= form_for(@topic, authenticity_token: true, remote: true ) do |f| %>
     <div class="modal-header">
-      <%= f.error_messages! %>
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
       </button>
-      <h4 class="modal-title">New/Editing Topic</h4>
+      <% if action_name == 'new'%>
+        <h4 class="modal-title">投稿作成</h4>
+      <% else %>
+        <h4 class="modal-title">投稿編集</h4>
+      <% end %>
+      <%= f.error_messages! %>
     </div>
     <div class="modal-body">
       <div class="field form-inline">

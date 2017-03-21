@@ -64,7 +64,7 @@ class User < ActiveRecord::Base
       params.delete :current_password
       update_without_password(params, *options)
     end
-  end
+   end
 
   #follow機能settings
   #フォローする

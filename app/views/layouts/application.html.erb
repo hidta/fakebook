@@ -32,7 +32,17 @@
         </ul>
       </div>
     </nav>
+    <% if notice %>
+      <h3 class="alert alert-success text-center">
+        <%= notice %>
+      </h3>
+    <% elsif alert %>
+      <h3 class="alert alert-danger text-center">
+        <%= alert %>
+      </h3>
+    <% end %>
   </header>
+  
 
   <%= yield %>
 

@@ -7,7 +7,8 @@ class TopicsController < ApplicationController
   # GET /topics.json
   def index
     @topics = Topic.all.order(updated_at: :desc)
-    @users = User.all.order(updated_at: :desc)
+    #raise
+    #@users = User.all.order(updated_at: :desc)
   end
 
   # GET /topics/1
@@ -38,11 +39,12 @@ class TopicsController < ApplicationController
     @topic = Topic.new(topic_params)
     @topic.user_id = current_user.id
     respond_to do |format|
+      @topics = Topic.all.order(updated_at: :desc)
       if @topic.save
-        @topics = Topic.all.order(updated_at: :desc)
         format.html { redirect_to root_path, notie: '新規作成しました' }
       else
-        format.html { redirect_to topics_path, alert: '投稿できませんでした' }
+        format.html { render 'index'}
+       format.js { render :new}
       end
     end
   end
@@ -60,7 +62,7 @@ class TopicsController < ApplicationController
   def destroy
     @topic.destroy
     respond_to do |format|
-      format.html { redirect_to topics_url, notice: '投稿を削除しました' }
+      format.html { redirect_to topics_url, alert: '投稿を削除しました' }
       format.json { head :no_content }
     end
   end
