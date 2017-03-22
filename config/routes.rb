@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  resources :users, only:[:index]
+  resources :users, only:[:index, :show]
 
   resources :conversations do
     resources :messages

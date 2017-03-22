@@ -5,10 +5,18 @@
         <h3 class="text-center title-link"><%= topic.title %></h3>
       <% end %>
     </h3>
-    <div class="postuser">
-      <%= profile_img(topic.user) %>
-      <%= topic.user.name %>
-    </div>
+    <!--div class="postuser"-->
+      <ul class="topic-ul">
+        <li class="postuser"><%= link_to user_path(topic.user.id), class: "linkname" do %>
+            <%= profile_img(topic.user) %>
+            <%= topic.user.name %>
+            <% end %>
+        </li>
+        <li class="topic-follow">
+          <%= render partial: 'users/follow_form', locals: {user: topic.user} if signed_in? %>
+        </li>
+      </ul>
+    <!--/div-->
     <p class="card-text"><%= topic.content %></p>
     <div class="pics">
       <%= image_tag(topic.topic_img, class: "timg") %>

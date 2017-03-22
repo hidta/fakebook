@@ -3,9 +3,23 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 //edit mypage
+h3 {
+  text-align: center;
+}
 
 #update {
   float: right;
+}
+.person {
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+.func {
+  padding: 0;
+}
+
+.indexusers {
+ box-sizing: content-box; 
 }
 
 li {
@@ -23,4 +37,12 @@ a {
 
 .linkmesse {
   color: blue;
+}
+
+.message {
+float: left;
+}
+
+.follow {
+  float: right;
 }
