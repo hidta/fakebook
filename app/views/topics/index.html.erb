@@ -19,18 +19,12 @@
     <div class="col-lg-4">
       <div class="well sidebar-nav navbar-fixed-side ">
         <ul class="nav nav-list">
-          <li class="nav-header text-center">フォローしてる人一覧</li><br>
-          <% @topics.each do |topic| %>
-            <% if current_user.following?(topic.user) %>
-              <span class="folloewers">
-                <%= profile_img(topic.user) %>
-                <% if topic.user.name == nil %>
-                  <p>名前未定</p>
-                <% end %>
-                <p><%= topic.user.name %></P>
-              </span>
-            <% end %>
-          <% end %>
+          <li class="nav-header text-center">
+            <%= current_user.name %>のフォロワー<p class="badge"><%= current_user.followers.count %></p>
+            </li><br>
+          
+          <%= render "side" %>
+          
         </ul>
       </span>
     </div>

@@ -7,7 +7,11 @@ class TopicsController < ApplicationController
   # GET /topics.json
   def index
     @topics = Topic.all.order(updated_at: :desc)
-    #raise
+    @counts = User.find(current_user.id).followers.count
+    respond_to do |format|
+      format.html { render 'index'}
+      format.html { render 'users/followers_count', locals:{ counts: @counts }}
+   end
     #@users = User.all.order(updated_at: :desc)
   end
 
@@ -44,7 +48,7 @@ class TopicsController < ApplicationController
         format.html { redirect_to root_path, notie: '新規作成しました' }
       else
         format.html { render 'index'}
-       format.js { render :new}
+        format.js { render :new}
       end
     end
   end
