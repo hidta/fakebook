@@ -19,7 +19,7 @@
           <% if user_signed_in? %>
            <li><%= link_to edit_user_registration_path, id: "mypage" do %>
              <%= profile_img(current_user)  %>
-                <span id="stmy">マイページ</span>
+                <span id="stmy"><%= current_user.name %></span>
               <% end %>
             </li>
             <li><%= link_to 'ユーザー一覧', users_path if user_signed_in? %></li>

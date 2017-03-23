@@ -14,7 +14,9 @@
         <%= render "index" %>        
       
       </div>
+      <%= paginate @topics, :window => 2 %>
     </div>
+
 
     <div class="col-lg-4">
       <div class="well sidebar-nav navbar-fixed-side ">

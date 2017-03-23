@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   root 'topics#index'
 
   resources :topics do
+    get 'page/:page', :action => :index, :on => :collection
     resources :comments
   end
 

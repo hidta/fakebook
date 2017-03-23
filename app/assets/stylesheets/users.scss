@@ -10,17 +10,6 @@ h3 {
 #update {
   float: right;
 }
-.person {
-  border: 1px solid #ccc;
-  padding: 8px;
-}
-.func {
-  padding: 0;
-}
-
-.indexusers {
- box-sizing: content-box; 
-}
 
 li {
   list-style: none;
@@ -31,12 +20,14 @@ a {
   color: blue;
 }
 
-.linkname {
-  color: blue;
+//show user
+.card {
+  border: solid 1px #ccc;
+  background-color: #f7f7f7;
 }
 
-.linkmesse {
-  color: blue;
+.btns {
+  padding: 0;
 }
 
 .message {
@@ -46,3 +37,5 @@ float: left;
 .follow {
   float: right;
 }
+
+//index user

@@ -1,56 +1,55 @@
 <div class="container">
-
-  <h3>
-    <%= profile_img(@user) %><%= @user.name %>のフォロワー <%= @user.followers.count %>人<br>
-    <%= link_to 'メッセージを送る', conversations_path(sender_id: current_user.id, recipient_id: @user.id), class: "btn btn-default ", method: 'post'%>
-  </h3>
-  <div class="row">
+  <h4 class="col-offset-6">
+    <%= link_to "#{@user.name}へメッセージを送る", conversations_path(sender_id: current_user.id, recipient_id: @user.id), class:"btn btn-default" %>
+  </h4>
+  <div class="col-sm-4 col-sm-offset-1">
+    <h4> 
+      <%= profile_img(@user) %><%= @user.name %>のフォロワー <%= @user.followers.count %>人
+    </h4><br>
     <% @user.followers.each do |follower| %>
-    <% if follower.id != current_user.id %>
-    <div class="card col-sm-3 col-xs-6 person">
-      <div class="indexusers">
-        <div class="item">
-          <%= link_to profile_img(follower), user_path(follower), class: "linkname" %>
-          <%= follower.name %><br>
-       </div>
-       </div>
-          <ul class="func">
+      <% if follower.id != current_user.id %>
+        <div class="card">
+          <div class="item">
+            <%= link_to profile_img(follower), user_path(follower), class: "linkname" %>
+            <%= follower.name %><br>
+          </div>
+          <ul class="btns">
             <li>
               <%= link_to 'メッセージを送る', conversations_path(sender_id: current_user.id, recipient_id: follower.id), class: "btn btn-default message", method: 'post'%>
             </li>
             <li>
               <%= render partial: 'follow_form', class: "follow",locals: { user: follower } if signed_in?   %>
             </li>
-          <ul>   
+          </ul>
+        </div>
       <% end %>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 
-  <h3>
-    <%= profile_img(@user) %><%= @user.name %>がフォローしている人 <%= @user.followed_users.count %>人<br>
-    <%= link_to 'メッセージを送る', conversations_path(sender_id: current_user.id, recipient_id: @user.id), class: "btn btn-default ", method: 'post'%>
-  </h3>
-  <div class="row">
+  <div class="col-sm-4 col-sm-offset-2">
+    <h4> 
+      <%= profile_img(@user) %><%= @user.name %>がフォローしている人 <%= @user.followers.count %>人
+    </h4><br>
     <% @user.followed_users.each do |follower| %>
-    <% if follower.id != current_user.id %>
-    <div class="card col-sm-3 col-xs-6 person">
-      <div class="indexusers">
-        <div class="item">
-          <%= link_to profile_img(follower), user_path(follower), class: "linkname" %>
-          <%= follower.name %><br>
-       </div>
-       </div>
-          <ul class="func">
+      <% if follower.id != current_user.id %>
+        <div class="card">
+          <div class="item">
+            <%= link_to profile_img(follower), user_path(follower), class: "linkname" %>
+            <%= follower.name %><br>
+          </div>
+          <ul class="btns">
             <li>
               <%= link_to 'メッセージを送る', conversations_path(sender_id: current_user.id, recipient_id: follower.id), class: "btn btn-default message", method: 'post'%>
             </li>
             <li>
               <%= render partial: 'follow_form', class: "follow",locals: { user: follower } if signed_in?   %>
             </li>
-          <ul>   
+          </ul>
+        </div>
       <% end %>
-    </div>
-  <% end %>
+    <% end %>
+  </div>  
 
+</div>
 
  

@@ -1,23 +1,23 @@
 <div class="container">
   <h2>ユーザー一覧</h2><br>
-  <% @users.each do |user| %>
-    <% if user.id != current_user.id %>
-    <div class="card col-sm-3 col-xs-6 person">
-      <div class="indexusers">
-        <div class="item">
-          <%= link_to profile_img(user), user_path(user.id), class: "linkname" %>
-          <%= user.name %><br>
-       </div>
-       </div>
-          <ul class="func">
+  <div class="row">
+    <% @users.each do |user| %>
+      <%if user.id != current_user.id %>
+        <div class="card col-sm-3">
+          <div class="item">
+            <%= link_to profile_img(user), user_path(user), class: "linkname" %>
+            <%= user.name %>
+          </div>
+          <ul class="btns">
             <li>
-              <%= link_to 'メッセージを送る', conversations_path(sender_id: current_user.id, recipient_id: user.id), class: "btn btn-default message", method: 'post'%>
-            </li>
+              <%= link_to "メッセージを送る", conversations_path(sender_id: current_user, recipient_id: user.id), class: "btn btn-default message", method: 'post' %>
+            </li> 
             <li>
-              <%= render partial: 'follow_form', class: "follow",locals: { user: user } if signed_in?   %>
+              <%= render partial: 'follow_form', class: "follow", locals: { user: user } if signed_in? %>
             </li>
-          <ul>   
+          </ul>
+        </div>
       <% end %>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>

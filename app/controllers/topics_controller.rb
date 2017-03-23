@@ -6,7 +6,7 @@ class TopicsController < ApplicationController
   # GET /topics
   # GET /topics.json
   def index
-    @topics = Topic.all.order(updated_at: :desc)
+    @topics = Topic.order(updated_at: :desc).page(params[:page]).per(10)
     @counts = User.find(current_user.id).followers.count
     respond_to do |format|
       format.html { render 'index'}
@@ -79,7 +79,7 @@ class TopicsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def topic_params
-      params.require(:topic).permit(:title, :content, :icon_url, :icon_url_cache, :topic_img, :topic_img_cache)
+      params.require(:topic).permit(:title, :content, :icon_url, :icon_url_cache, :topic_img, :topic_img_cache, :page)
     end
 
 end

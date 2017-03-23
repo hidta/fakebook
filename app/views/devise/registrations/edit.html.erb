@@ -10,7 +10,18 @@
   <div class="row">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, class: "control-group") do |f| %>
     <%= f.error_messages! %>
+
     <div class="col-sm-4 col-offset-sm-2" >
+      <ul>
+        <%= link_to user_path(@user.id) do %>
+        <li>
+          <p class="badge">フォロワー<%= @user.followers.count%></p>
+        </li>
+        <li>
+          <p class="badge badge-primary">フォロー<%= @user.followed_users.count%></p>
+        </li>
+        <% end %>
+      </ul>
       <P id="icon"><%= profile_img(@user) if profile_img(@user) %></P>
       <%= f.hidden_field :icon_cache %>
       <%= f.file_field :icon %>
