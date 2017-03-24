@@ -1,10 +1,10 @@
 
 <li>
-  <%= current_user.name %>がフォローしてる人一覧
+  <p>最新の投稿者</p>
 </li><br>
-<li class="follows">
+<li class="row" id="follows">
 <% @topics.each do |topic| %>
-  <% if current_user.following?(topic.user) %>
+  <%# if current_user.following?(topic.user) %>
     <div class="col-sm-4">
       <%= profile_img(topic.user) %>
       <% if topic.user.name == nil %>
@@ -13,6 +13,6 @@
         <p><%= topic.user.name %></P>
       <% end %>
     </div>
-  <% end %>
+  <%# end %>
 <% end %>
 </li>
