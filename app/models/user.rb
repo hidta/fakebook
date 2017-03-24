@@ -48,7 +48,7 @@ class User < ActiveRecord::Base
     user
   end
 
-  #サインアップできるよう
+  #通常サインアップできるようuidをランダム生成
   def self.create_unique_string
     SecureRandom.uuid
   end

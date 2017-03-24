@@ -2,16 +2,17 @@
 <li>
   <%= current_user.name %>がフォローしてる人一覧
 </li><br>
-<div class="followeds">
+<li class="follows">
 <% @topics.each do |topic| %>
   <% if current_user.following?(topic.user) %>
-    <span class="folloewers">
-     <%= profile_img(topic.user) %>
-     <% if topic.user.name == nil %>
-       <p>名前未定</p>
-     <% end %>
-     <p><%= topic.user.name %></P>
-    </span>
+    <div class="col-sm-4">
+      <%= profile_img(topic.user) %>
+      <% if topic.user.name == nil %>
+        <p>名前未定</p>
+      <% elsif %>
+        <p><%= topic.user.name %></P>
+      <% end %>
+    </div>
   <% end %>
 <% end %>
-</div>
+</li>

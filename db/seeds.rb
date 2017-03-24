@@ -13,7 +13,6 @@
   random = User.create_unique_string
   title = Faker::Pokemon.name
   content = Faker::Company.catch_phrase
-  fimag = Faker::Avatar.image
   fakes = ['app/assets/images/fakehito.jpg', 'app/assets/images/fakepika.jpg', 'app/assets/images/fakezeni.jpg', 'app/assets/images/fakepoke.jpg']
   imgs = fakes.sample
 
